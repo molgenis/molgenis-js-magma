@@ -1,3 +1,7 @@
-### [0.0.1](https://github.com/molgenis/molgenis-magma/releases/tag/v0.0.1)
+### 0.0.9
 
-- The first release
+- Move Molgenis MagmaScript evaluator to npm module
+- Let `MagmaScript.value()` method return wrapped value unchanged
+- Rename `evalScript` to `evaluator`
+- Let `evaluator` replace objects in the result with their id value
+- Pick up bugfix and unit tests from forms library

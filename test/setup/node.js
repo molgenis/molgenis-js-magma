@@ -1,6 +1,8 @@
 global.chai = require('chai');
 global.sinon = require('sinon');
 global.chai.use(require('sinon-chai'));
+global.math = require('mathjs');
+global.moment = require('moment');
 
 require('babel-core/register');
 require('./setup')();

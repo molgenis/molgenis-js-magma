@@ -7,6 +7,8 @@
     "stub": true,
     "useFakeServer": true,
     "useFakeTimers": true,
-    "useFakeXMLHttpRequest": true
+    "useFakeXMLHttpRequest": true,
+    "math": true,
+    "moment": true
   }
 }

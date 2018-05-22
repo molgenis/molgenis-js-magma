@@ -17,6 +17,8 @@ module.exports = function(root) {
   afterEach(() => {
     delete root.stub;
     delete root.spy;
+    delete root.math;
+    delete root.moment;
     root.sandbox.restore();
   });
 };
