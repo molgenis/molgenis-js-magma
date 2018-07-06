@@ -437,20 +437,11 @@ MagmaScript.prototype.toUnit = function (targetUnit) {
  * Stores the computed MagmaScript value after applying on of the mathematical
  * functions listed below
  *
- * In case of deep referencing attribute e.g. xref.xref2.label, we loop through these attributes and only return
- * new MagmaScript(label)
- *
  * @version 1.0
  * @namespace MagmaScript
  */
 MagmaScript.$ = function (attr) {
-  const attributes = attr.split('\.')
-  let result = this // we expect the $ function be bound to the entity we're evaluating
-
-  for (let i = 0; i < attributes.length && result !== null; i++) {
-    result = result[attributes[i]]
-  }
-  return new MagmaScript(result)
+  return new MagmaScript(this[attr])
 }
 
 MagmaScript._isNull = function (value) {

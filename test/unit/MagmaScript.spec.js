@@ -35,8 +35,8 @@ describe('MagmaScript', () => {
       expect($('cookie')).to.deep.equal(new MagmaScript(chocChip))
     })
 
-    it('should work for nested attribute of reference', () => {
-      expect($('cookie.name')).to.deep.equal(new MagmaScript('Chocolate chip'))
+    it('should not return nested attributes when using dot notation', () => {
+      expect($('cookie.name')).to.deep.equal(new MagmaScript(undefined))
     })
 
     it('should work for references', () => {
