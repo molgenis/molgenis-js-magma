@@ -1,5 +1,4 @@
-import MagmaScript from '../../src/MagmaScript'
-import {evaluator} from '../../src/MagmaScript'
+import MagmaScript, { evaluator } from '../../src/MagmaScript'
 
 describe('MagmaScript', () => {
   const chocChip = {'_idValue': 1, 'id': 1, 'name': 'Chocolate chip', 'tastiness': '9/10'}
@@ -36,8 +35,8 @@ describe('MagmaScript', () => {
       expect($('cookie')).to.deep.equal(new MagmaScript(chocChip))
     })
 
-    it('should work for nested attribute of reference', () => {
-      expect($('cookie.name')).to.deep.equal(new MagmaScript('Chocolate chip'))
+    it('should not return nested attributes when using dot notation', () => {
+      expect($('cookie.name')).to.deep.equal(new MagmaScript(undefined))
     })
 
     it('should work for references', () => {
@@ -80,8 +79,12 @@ describe('MagmaScript', () => {
       expect(magmaValue.value()).to.equal(1)
     })
 
-    it('should return wrapped entity', () => {
-      expect(magmaEntity.value()).to.deep.equal(entityWithIdVal)
+    it('should return id of wrapped entity', () => {
+      expect(magmaEntity.value()).to.equal('A')
+    })
+
+    it('should use id value when comparing', () => {
+      expect(evaluator('$(\'cookie\').value() === 1', entity)).to.equal(true)
     })
   })
 
@@ -120,19 +123,19 @@ describe('MagmaScript', () => {
       })
 
       it('should evaluate $(\'height\').lt(100).value()', () => {
-        expect(evaluator('$(\'height\').lt(100).value()',entity)).to.equal(false)
+        expect(evaluator('$(\'height\').lt(100).value()', entity)).to.equal(false)
       })
 
       it('should evaluate $(\'height\').ge(100).value()', () => {
-        expect(evaluator('$(\'height\').ge(100).value()',entity)).to.equal(true)
+        expect(evaluator('$(\'height\').ge(100).value()', entity)).to.equal(true)
       })
 
       it('should evaluate $(\'height\').le(100).value()', () => {
-        expect(evaluator('$(\'height\').le(100).value()',entity)).to.equal(false)
+        expect(evaluator('$(\'height\').le(100).value()', entity)).to.equal(false)
       })
 
       it('should evaluate $(\'height\').eq(100).value()', () => {
-        expect(evaluator('$(\'height\').eq(100).value()',entity)).to.equal(false)
+        expect(evaluator('$(\'height\').eq(100).value()', entity)).to.equal(false)
       })
 
       it('should evaluate $(\'name\').matches(/^[a-z0-9]+$/i).value()', () => {
@@ -179,9 +182,9 @@ describe('MagmaScript', () => {
         const sampleScript = 'var cookies = []\n' +
           '$(\'cookies\').map(function (cookie) {\n' +
           '    cookies.push(cookie.value()) // results in [\'1\', \'2\', \'3\']\n' +
-          '    cookies.push(cookie.value().id) // results in [\'1\', \'2\', \'3\']\n' +
-          '    cookies.push(cookie.value().name) // results in [\'Chocolate chip\', \'Strawberry cookie\', \'Banana cookie\']\n' +
-          '    cookies.push(cookie.value().tastiness) // results in [\'9/10\', \'10/10\', \'7/10\']\n' +
+          '    cookies.push(cookie.attr(\'id\').value()) // results in [\'1\', \'2\', \'3\']\n' +
+          '    cookies.push(cookie.attr(\'name\').value()) // results in [\'Chocolate chip\', \'Strawberry cookie\', \'Banana cookie\']\n' +
+          '    cookies.push(cookie.attr(\'tastiness\').value()) // results in [\'9/10\', \'10/10\', \'7/10\']\n' +
           '});\n' +
           'cookies'
         expect(evaluator(sampleScript, entity)).to.deep.equal([1, 1, 'Chocolate chip', '9/10', 2, 2, 'Strawberry', '10/10', 3, 3, 'Banana', '7/10'])
@@ -196,7 +199,7 @@ describe('MagmaScript', () => {
 
       it('should evaluate a cleaner version of the sample script', () => {
         const sampleScript = '$(\'cookies\').map(function (cookie) {\n' +
-          '   return cookie.value().name\n' +
+          '   return cookie.attr(\'name\').value()\n' +
           '}).value()'
         expect(evaluator(sampleScript, entity)).to.deep.equal(['Chocolate chip', 'Strawberry', 'Banana'])
       })

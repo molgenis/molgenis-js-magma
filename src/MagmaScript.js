@@ -7,10 +7,10 @@ import moment from 'moment'
  * @returns {*} value with _idValue property replaced in objects
  */
 export const toIdValue = (value) => {
-  if(value === null) return null
-  if(value === undefined) return undefined
-  if(Array.isArray(value)) return value.map(toIdValue)
-  if(typeof value === 'object' && value['_idValue'] !== undefined) return value._idValue
+  if (value === null) return null
+  if (value === undefined) return undefined
+  if (Array.isArray(value)) return value.map(toIdValue)
+  if (typeof value === 'object' && value['_idValue'] !== undefined) return value._idValue
   return value
 }
 
@@ -38,7 +38,6 @@ export function MagmaScript (val) {
 }
 
 /**
- *
  * Gives you the value of the attribute specified between $('')
  * notation
  *
@@ -52,7 +51,17 @@ export function MagmaScript (val) {
  *
  */
 MagmaScript.prototype.value = function () {
-  return this.val
+  return toIdValue(this.val)
+}
+
+/**
+ * Returns the contents of an attribute.
+ *
+ * @memberOf MagmaScript
+ * @method attr
+ */
+MagmaScript.prototype.attr = function (attr) {
+  return MagmaScript.newValue(this.val[attr])
 }
 
 /**
@@ -428,20 +437,11 @@ MagmaScript.prototype.toUnit = function (targetUnit) {
  * Stores the computed MagmaScript value after applying on of the mathematical
  * functions listed below
  *
- * In case of deep referencing attribute e.g. xref.xref2.label, we loop through these attributes and only return
- * new MagmaScript(label)
- *
  * @version 1.0
  * @namespace MagmaScript
  */
 MagmaScript.$ = function (attr) {
-  const attributes = attr.split('\.')
-  let result = this // we expect the $ function be bound to the entity we're evaluating
-
-  for (let i = 0; i < attributes.length && result !== null; i++) {
-    result = result[attributes[i]]
-  }
-  return new MagmaScript(result)
+  return new MagmaScript(this[attr])
 }
 
 MagmaScript._isNull = function (value) {
