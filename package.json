@@ -10,7 +10,7 @@
   "scripts": {
     "test": "gulp",
     "lint": "gulp lint",
-    "test-browser": "gulp test-browser",
+    "unit": "gulp test-browser",
     "watch": "gulp watch",
     "build": "gulp build",
     "coverage": "gulp coverage"
