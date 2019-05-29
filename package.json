@@ -35,7 +35,7 @@
   "module": "src/magma-script-evaluator.js",
   "scripts": {
     "build": "webpack --mode production",
-    "test": "mocha-webpack --mode production \"test/unit/magma-script-evaluator.js.spec.js\""
+    "unit": "mocha-webpack --mode production \"test/unit/magma-script-evaluator.js.spec.js\""
   },
   "dependencies": {
     "mathjs": "^4.3.0",
