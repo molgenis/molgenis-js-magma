@@ -9,8 +9,12 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      [ "@semantic-release/changelog",
-          {"changelogFile": "CHANGELOG.md" } ],
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
       "@semantic-release/npm",
       "@semantic-release/git",
       "@semantic-release/github"
@@ -35,7 +39,7 @@
   "module": "src/magma-script-evaluator.js",
   "scripts": {
     "build": "webpack --mode production",
-    "unit": "mocha-webpack --mode production \"test/unit/magma-script-evaluator.js.spec.js\""
+    "unit": "mocha-webpack --mode production \"test/unit/magma-script-evaluator.spec.js\""
   },
   "dependencies": {
     "mathjs": "^4.3.0",

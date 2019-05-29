@@ -1,7 +1,7 @@
-import { evaluator } from '../../src/MagmaScript'
+import { evaluator } from '../../src/magma-script-evaluator'
 import moment from 'moment'
 import { expect } from 'chai'
-import MagmaScript from '../../src/MagmaScript'
+import MagmaScript from '../../src/magma-script-evaluator'
 
 describe('evaluator', () => {
   describe('string comparison', () => {
@@ -441,7 +441,7 @@ describe('MagmaScript', () => {
   const entity = {
     'id': 'A',
     'cookie': chocChip,
-    'cookies': [chocChip, strawberry, banana],
+    'cookies': [ chocChip, strawberry, banana ],
     'dob': dob,
     'myStringAttributeName': 'abcde0123',
     'myIntAttributeName': 4,
@@ -503,14 +503,15 @@ describe('MagmaScript', () => {
 
   describe('value function', () => {
     const magmaValue = new MagmaScript(1)
-    const entityWithIdVal = {entity, '_idValue': 'A'}
+    const idValue = 'A'
+    const entityWithIdVal = {'_idValue': idValue}
     const magmaEntity = new MagmaScript(entityWithIdVal)
     it('should return wrapped value', () => {
       expect(magmaValue.value()).to.equal(1)
     })
 
-    it('should return wrapped entity', () => {
-      expect(magmaEntity.value()).to.deep.equal(entityWithIdVal)
+    it('should return value within wrapped entity', () => {
+      expect(magmaEntity.value()).to.deep.equal(idValue)
     })
   })
 
