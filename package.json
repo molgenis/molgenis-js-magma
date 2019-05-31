@@ -3,21 +3,36 @@
   "version": "0.0.9",
   "description": "MagmaScript evaluator in JavaScript",
   "main": "dist/MagmaScript.js",
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [ "@semantic-release/changelog",
+          {"changelogFile": "CHANGELOG.md" } ],
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://registry.npmjs.org"
+  },
   "files": [
     "dist"
   ],
   "unpkg": "dist/MagmaScript.min.js",
   "scripts": {
-    "test": "gulp",
+    "unit": "gulp",
     "lint": "gulp lint",
-    "test-browser": "gulp test-browser",
+    "debug": "gulp test-browser",
     "watch": "gulp watch",
     "build": "gulp build",
     "coverage": "gulp coverage"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/molgenis/magma-script.git"
+    "url": "https://github.com/molgenis/molgenis-js-magma.git"
   },
   "keywords": [
     "MagmaScript"
@@ -25,9 +40,9 @@
   "author": "Fleur Kelpin <f.kelpin@umcg.nl>",
   "license": "LGPL-3.0+",
   "bugs": {
-    "url": "https://github.com/molgenis/magma-script/issues"
+    "url": "https://github.com/molgenis/molgenis-js-magma/issues"
   },
-  "homepage": "https://github.com/molgenis/magma-script",
+  "homepage": "https://github.com/molgenis/molgenis-js-magma",
   "devDependencies": {
     "babel-core": "6.14.0",
     "babel-loader": "6.2.5",
