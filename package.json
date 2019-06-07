@@ -1,6 +1,6 @@
 {
   "name": "@molgenis/magma-script",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MagmaScript evaluator in JavaScript",
   "main": "dist/MagmaScript.js",
   "release": {

@@ -1,3 +1,10 @@
+## [0.1.1](https://github.com/molgenis/molgenis-js-magma/compare/v0.1.0...v0.1.1) (2019-06-07)
+
+
+### Bug Fixes
+
+* ci build ([63fcc62](https://github.com/molgenis/molgenis-js-magma/commit/63fcc62))
+
 # [0.1.0](https://github.com/molgenis/molgenis-js-magma/compare/v0.0.9...v0.1.0) (2019-05-31)
 
 
