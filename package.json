@@ -85,5 +85,8 @@
   "dependencies": {
     "mathjs": "^4.3.0",
     "moment": "^2.22.1"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
   }
 }
