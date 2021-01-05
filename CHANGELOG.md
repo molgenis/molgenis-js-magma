@@ -1,3 +1,10 @@
+## [0.1.2](https://github.com/molgenis/molgenis-js-magma/compare/v0.1.1...v0.1.2) (2021-01-05)
+
+
+### Bug Fixes
+
+* force graceful-js version for gulp ([5157049](https://github.com/molgenis/molgenis-js-magma/commit/5157049))
+
 ## [0.1.1](https://github.com/molgenis/molgenis-js-magma/compare/v0.1.0...v0.1.1) (2019-06-07)
 
 
